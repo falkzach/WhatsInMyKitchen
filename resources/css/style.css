@@ -13,3 +13,9 @@ body {
 .nav-tabs, .nav-pills {
     text-align:center;
 }
+
+.fridge-icon {
+    width: 14px;
+    height: 14px;
+    content:url('../img/fridge.png');
+}
