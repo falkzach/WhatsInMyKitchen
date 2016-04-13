@@ -1,7 +1,15 @@
 body {
-    min-height: 2000px;
-    padding-top: 70px;
+    padding-top: 50px;
 }
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar-brand {float:none;}
 
 .nav-tabs > li, .nav-pills > li {
     float:none;
@@ -17,5 +25,5 @@ body {
 .fridge-icon {
     width: 14px;
     height: 14px;
-    content:url('../img/icons/fridge.png');
+    content:url('../img/icons/fridge.svg');
 }
