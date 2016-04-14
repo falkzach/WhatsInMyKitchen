@@ -2,6 +2,7 @@ body {
     padding-top: 70px;
 }
 
+/*TODO: fix weird button alignment*/
 .navbar-header {
     float: left;
     padding: 15px;
@@ -22,8 +23,11 @@ body {
     text-align:center;
 }
 
+/*TODO: fix colour when fridge icon not selected*/
+/*TODO: delete png icon if not used*/
 .fridge-icon {
     width: 14px;
     height: 14px;
     content: url('../img/icons/fridge.svg');
 }
+
