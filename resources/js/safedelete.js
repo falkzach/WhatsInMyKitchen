@@ -7,8 +7,8 @@ var safedelete = {
         if(safedelete.clicked[selector] == true)
         {
             //execute the callback if passed
-            if (callback) callback();
             safedelete.clicked[selector] = null;
+            if (callback) callback();
         }
         else
         {
@@ -18,6 +18,7 @@ var safedelete = {
             var timer=self.setInterval(
                 function() {
                     $(selector).css('color', '#cccccc');
+                    safedelete.clicked[selector] = null;
                     window.clearInterval(timer);
                 } ,2000);
         }
