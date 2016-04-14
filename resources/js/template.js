@@ -1,4 +1,8 @@
 var template = {
+    init: function() {
+
+    },
+
     get_template: function (path, callback) {
         var source;
         var template;

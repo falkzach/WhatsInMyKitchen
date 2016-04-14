@@ -96,9 +96,20 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" style="float: left"></button>
+                        <button href="#" class="glyphicon glyphicon-plus-sign btn btn-default" style="float: left"></button>
                         <a class="navbar-brand" href="#">Recipes</a>
-                        <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary" style="float: right"></button>
+                        <div class="dropdown" style="float: right">
+                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">View Public Recipes</a></li>
+                                <li><a href="#">Sort by Name</a></li>
+                                <li><a href="#">Sort by Recently Added</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Remove All Items</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -107,6 +118,22 @@
             <div class="container">
                 <ul class="list-group" id="recipes_list">
                 </ul>
+
+
+                <div class = 'form-horizontal well'>
+                    <fieldset>
+                        <legend>
+                            Legend
+                        </legend>
+                        <div class="control-group">
+                            <label for="unavailable_colour">Available</label>
+                            <input type="color" name="available_colour" id="unavailable_colour" value="#dff0d8" disabled>
+                            <input type="color" name="available_colour" id="available_colour" value="#f2dede" style="float: right" disabled>
+                            <label for="available_colour" style="float: right">Un-Available</label>
+                        </div>
+                    </fieldset>
+
+                </div>
             </div>
 
         </div>
@@ -139,8 +166,9 @@
 <script src="./resources/js/recipes.js"></script>
 
 <script>
+    template.init();
     recipes.init();
-    recipes.add_recipe('Cake');
+    recipes.add_recipe('Cake', true);
 </script>
 
 </body>

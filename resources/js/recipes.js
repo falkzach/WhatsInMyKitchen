@@ -4,10 +4,17 @@ var recipes = {
         recipes._add_initial_recipes();
     },
 
+    recipes: {
+        "Cupcakes": {name: "Cupcakes", available: true},
+        "Cookies": {name: "Cookies", available: false},
+        "Sushi": {name: "Sushi", available: true},
+        "Apple Pie": {name: "Apple Pie", available: true}
+    },
+
     _add_initial_recipes: function() {
-        var items = ["Cupcakes", "Cookies", "Sushi", "Apple Pie"];
-        items.map(function(item){
-            var context = {name: item};
+        Object.keys(recipes.recipes).map(function(item) {
+            console.log(recipes.recipes[item].available);
+            var context = recipes.recipes[item];
             recipes._add_recipe_li(context);
         });
     },
@@ -19,8 +26,9 @@ var recipes = {
         });
     },
 
-    add_recipe: function(name) {
-        var context = {name: name};
+    add_recipe: function(name, available) {
+        var context = {name: name, available: available};
+        recipes.recipes[context.name] = context;
         recipes._add_recipe_li(context);
     }
 
