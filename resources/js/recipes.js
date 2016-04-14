@@ -26,11 +26,9 @@ var recipes = {
     },
 
     _recipe_ul:function(context){
-        template.get_template('resources/templates/recipe_ul.handlebars', function(t) {
+        template.get_template('resources/templates/recipe_li.handlebars', function(t) {
             var html_string = template.get_html(t, context);
-            var ul = $('<div/>').html(html_string).contents();
-            console.log(html_string);
-            $('.recipes_list').append(ul);
+            $('#recipes_list').append(html_string);
         });
 
     },
