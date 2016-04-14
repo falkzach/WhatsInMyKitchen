@@ -1,4 +1,6 @@
-<li class="list-group-item {{#if available}} list-group-item-success {{else}} list-group-item-danger {{/if}}">
+<li class="list-group-item {{#if available}} list-group-item-success {{else}} list-group-item-danger {{/if}}" id="{{name}}">
     {{name}}
-    <a href="#" style="float: right"><span class="glyphicon glyphicon-remove glyphicon-user" style="color:#cccccc"></span></a>
+    <a href="#" onclick="recipes.delete_recipe($(this).parent().attr('id'))" style="float: right">
+        <span class="glyphicon glyphicon-remove glyphicon-user" style="color:#cccccc"></span>
+    </a>
 </li>
