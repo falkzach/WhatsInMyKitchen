@@ -32,8 +32,11 @@ var recipes = {
     },
 
     delete_recipe: function(name) {
-        delete recipes.recipes[name];
-        $("#" + name).remove();
+        safedelete.protect("#recipeDelete-" + name, function(){
+            delete recipes.recipes[name];
+            $("#" + name).remove();
+        });
+
     }
 
 };
