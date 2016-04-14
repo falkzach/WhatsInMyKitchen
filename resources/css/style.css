@@ -23,8 +23,6 @@ body {
     text-align:center;
 }
 
-/*TODO: fix colour when fridge icon not selected*/
-/*TODO: delete png icon if not used*/
 .fridge-icon {
     width: 14px;
     height: 14px;
