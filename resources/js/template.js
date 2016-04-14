@@ -13,7 +13,6 @@ var template = {
                 source = data;
                 template = Handlebars.compile(source);
 
-                //execute the callback if passed
                 if (callback) callback(template);
             }
         });
