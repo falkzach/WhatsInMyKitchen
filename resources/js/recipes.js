@@ -13,7 +13,6 @@ var recipes = {
 
     _add_initial_recipes: function() {
         Object.keys(recipes.recipes).map(function(item) {
-            console.log(recipes.recipes[item].available);
             var context = recipes.recipes[item];
             recipes._add_recipe_li(context);
         });
@@ -30,6 +29,11 @@ var recipes = {
         var context = {name: name, available: available};
         recipes.recipes[context.name] = context;
         recipes._add_recipe_li(context);
+    },
+
+    delete_recipe: function(name) {
+        delete recipes.recipes[name];
+        $("#" + name).remove();
     }
 
 };
