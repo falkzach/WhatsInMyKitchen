@@ -107,6 +107,22 @@
             <div class="container">
                 <ul class="list-group" id="recipes_list">
                 </ul>
+
+
+                <div class = 'form-horizontal well'>
+                    <fieldset>
+                        <legend>
+                            Legend
+                        </legend>
+                        <div class="control-group">
+                            <label for="unavailable_colour">Available</label>
+                            <input type="color" name="available_colour" id="unavailable_colour" value="#dff0d8" disabled>
+                            <input type="color" name="available_colour" id="available_colour" value="#f2dede" style="float: right" disabled>
+                            <label for="available_colour" style="float: right">Un-Available</label>
+                        </div>
+                    </fieldset>
+
+                </div>
             </div>
 
         </div>
@@ -139,6 +155,7 @@
 <script src="./resources/js/recipes.js"></script>
 
 <script>
+    template.init();
     recipes.init();
     recipes.add_recipe('Cake');
 </script>
