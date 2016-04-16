@@ -1,0 +1,6 @@
+<li class="list-group-item" id="{{name}}">
+    {{name}}:   {{quantity}}
+    <a href="#" onclick="kitchen.delete_item($(this).parent().attr('id'))" style="float: right">
+        <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc"></span>
+    </a>
+</li>
