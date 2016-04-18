@@ -8,10 +8,10 @@ var kitchen = {
     },
 
     items: {
-        "Bananas": {name: "Banana", quantity: 2},
-        "Cookies": {name: "Cookies", quantity: 3},
-        "Lettuce": {name: "Lettuce", quantity: 4},
-        "Eggs": {name: "Eggs", quantity: 5}
+        "Bananas": {name: "Bananas", quantity: 2, unit: ""},
+        "Cookies": {name: "Cookies", quantity: 3, unit: "Units"},
+        "Lettuce": {name: "Lettuce", quantity: 4, unit: "Grams"},
+        "Eggs": {name: "Eggs", quantity: 5, unit: "Units"}
     },
 
     _add_initial_items: function() {
@@ -28,8 +28,8 @@ var kitchen = {
         });
     },
 
-    add_item: function(name, quantity) {
-        var context = {name: name, quantity: quantity};
+    add_item: function(name, quantity, unit) {
+        var context = {name: name, quantity: quantity, unit: unit};
         kitchen.items[context.name] = context;
         kitchen._add_item_li(context);
     },
@@ -40,6 +40,15 @@ var kitchen = {
             $("#" + name).remove();
         });
 
+    },
+
+    change_quantity: function(name, newQ) {
+        kitchen.items[name].quantity = newQ;
+        $("#kitchenList" + name + "quantity").html(newQ);
     }
 
 };
+
+function sumQuantity(quantity, sum) {
+    return parseInt(quantity, 10) + parseInt(sum, 10);
+}

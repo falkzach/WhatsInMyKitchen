@@ -121,9 +121,18 @@
                                 <input type="text" id="item_name" required aria-required="true"/>
 
                             </div>
+                            <div class="modal-body">
+
+                                <label for="item_quantity">Quantity</label>
+                                <input type="text" id="item_quantity" required aria-required="true"/>
+
+                                <label for="item_unit"></label>
+                                <input type="text" id="item_unit" required aria-required="true"/>
+
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val())" data-dismiss="modal">Add</button>
+                                <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#item_unit').val())" data-dismiss="modal">Add</button>
                             </div>
                         </form>
                     </div>
