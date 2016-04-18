@@ -14,6 +14,7 @@
     <link href="./resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
 
+    <!-- JavaScript for drop down selection in FAQ tab -->
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -21,36 +22,30 @@
                 $(this).find("option:selected").each(function(){
                     if($(this).attr("value")=="kitchenDD"){
                         $(".box").not(".kitchenDD").hide();
-                        $(".kitchenDD").show();
-                    }
+                        $(".kitchenDD").show();}
                     else if($(this).attr("value")=="shoppingDD"){
                         $(".box").not(".shoppingDD").hide();
-                        $(".shoppingDD").show();
-                    }
+                        $(".shoppingDD").show();}
                     else if($(this).attr("value")=="recipeDD"){
                         $(".box").not(".recipeDD").hide();
-                        $(".recipeDD").show();
-                    }
+                        $(".recipeDD").show();}
                     else if($(this).attr("value")=="userDD"){
                         $(".box").not(".userDD").hide();
-                        $(".userDD").show();
-                    }
+                        $(".userDD").show();}
                     else if($(this).attr("value")=="miscDD"){
                         $(".box").not(".miscDD").hide();
-                        $(".miscDD").show();
-                    }
+                        $(".miscDD").show();}
                     else{
-                        $(".box").hide();
-                    }
+                        $(".box").hide();}
                 });
             }).change();
         });
     </script>
 </head>
 
+
+
 <body>
-
-
 <!-- Fixed navbar bottom -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
@@ -80,22 +75,22 @@
 <div class="container">
     <!-- Tab panes -->
     <div class="tab-content">
+
+        <!-- HELP & FAQ -->
         <div role="tabpanel" class="tab-pane" id="info">
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Information</a>
                         <button href="#" class="glyphicon glyphicon-envelope btn btn-primary" data-toggle="modal" data-target="#sendMessage" style="float: right"></button>
                     </div>
-
                 </div>
             </nav>
 
             <div class="container">
-
                 <div>
+                    <!-- Drop down selection -->
                     <label>What would you like help with?</label><br>
                     <select>
                         <option>Choose Category</option>
@@ -108,72 +103,68 @@
                 </div>
 
                 <hr>
+                <!-- Q&As for Kitchen -->
                 <div class="kitchenDD box">
-
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
-                                <a id="myHeader1" href="javascript:showonlyone('newboxes1');" >Kitchen Question 1</a>
+                        <a id="myHeader1" href="javascript:showonlyone('newboxes1');" >Kitchen Question 1</a>
                     </div>
                     <div class="newboxes" id="newboxes1" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Kitchen Answer 1</div>
                     <br>
-
-
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
                         <a id="myHeader2" href="javascript:showonlyone('newboxes2');" >Kitchen Question 2</a>
                     </div>
                     <div class="newboxes" id="newboxes2" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Kitchen Answer 2</div>
                     <br>
-
-
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
                         <a id="myHeader3" href="javascript:showonlyone('newboxes3');" >Kitchen Question 3</a>
                     </div>
                     <div class="newboxes" id="newboxes3" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Kitchen Answer 3</div>
-
                 </div>
 
+                <!-- Q&As for Shopping -->
                 <div class="shoppingDD box">
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
                         <a id="myHeader4" href="javascript:showonlyone('newboxes4');" >Shopping Question 1</a>
                     </div>
                     <div class="newboxes" id="newboxes4" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Shopping Answer 1</div>
                     <br>
-
-
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
                         <a id="myHeader5" href="javascript:showonlyone('newboxes5');" >Shopping Question 2</a>
                     </div>
                     <div class="newboxes" id="newboxes5" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Shopping Answer 2</div>
                     <br>
-
-
                     <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
                         <a id="myHeader6" href="javascript:showonlyone('newboxes6');" >Shopping Question 3</a>
                     </div>
                     <div class="newboxes" id="newboxes6" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Shopping Answer 3</div>
                 </div>
 
+                <!-- Q&As for Other tabs -->
                 <div class="recipeDD box">You have selected Recipes</div>
                 <div class="userDD box">You have selected Users</div>
                 <div class="miscDD box">You have selected Misc</div>
+
+
+                <!-- Code for showing/hiding answers -->
                 <script>
-                    function showonlyone(thechosenone)
+                    function showonlyone(chosenBox)
                     {
                         var newboxes = document.getElementsByTagName("div");
                         for(var x=0; x<newboxes.length; x++) {
                             name = newboxes[x].getAttribute("class");
                             if (name == 'newboxes') {
-                                if (newboxes[x].id == thechosenone) {
-                                    newboxes[x].style.display = 'block';
-                                }
+                                if (newboxes[x].id == chosenBox) {
+                                    newboxes[x].style.display = 'block';}
                                 else {
-                                    newboxes[x].style.display = 'none';
-                                }
+                                    newboxes[x].style.display = 'none';}
                             }
                         }
                     }
                 </script>
             </div>
 
+
+            <!-- SEND MESSAGE MODAL -->
             <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -187,20 +178,19 @@
                                 <label>To: info@WIMK.com</label><br>
                                 <label>Message:</label>
                                 <textarea cols="48" rows="4" name="messageBody"></textarea>
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Send Message</button>
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
+        <!-- SHOPPING CART -->
         <div role="tabpanel" class="tab-pane" id="cart">
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top">
@@ -215,8 +205,27 @@
                 </div>
             </nav>
 
+            <!-- Shopping list: Drag items from here -->
+            <ol data-draggable="target">
+                <li data-draggable="item">Item 0</li>
+                <li data-draggable="item">Item 1</li>
+                <li data-draggable="item">Item 2</li>
+                <li data-draggable="item">Item 4</li>
+                <li data-draggable="item">Item 5</li>
+                <li data-draggable="item">Item 3</li>
+            </ol>
 
+            <!-- Shopping Cart: Add items to here -->
+            <ol data-draggable="target">
+                Add items to here
+            </ol>
+
+            <!-- Call drag and drop code -->
+            <script src="./resources/js/dragdrop.js"></script>
         </div>
+
+
+        <!-- KITCHEN -->
         <div role="tabpanel" class="tab-pane active" id="kitchen">
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top">
@@ -230,8 +239,10 @@
 
                 </div>
             </nav>
-
         </div>
+
+
+        <!-- RECIPES -->
         <div role="tabpanel" class="tab-pane" id="recipes">
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top">
@@ -260,8 +271,6 @@
             <div class="container">
                 <ul class="list-group" id="recipes_list">
                 </ul>
-
-
                 <div class = 'form-horizontal well'>
                     <fieldset>
                         <legend>
@@ -287,38 +296,36 @@
                             <h4 class="modal-title" id="myModalLabel">Add Recipe</h4>
                         </div>
                         <form>
-                        <div class="modal-body">
+                            <div class="modal-body">
 
                                 <label for="recipe_name">Name</label>
                                 <input type="text" id="recipe_name" required aria-required="true"/>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" onclick="recipes.add_recipe($('#recipe_name').val())" data-dismiss="modal">Add</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" onclick="recipes.add_recipe($('#recipe_name').val())" data-dismiss="modal">Add</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
+        <!-- SETTINGS -->
         <div role="tabpanel" class="tab-pane" id="settings">
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Settings</a>
                     </div>
-
                 </div>
             </nav>
-
         </div>
     </div>
-
-</div> <!-- /container -->
+</div>
 
 
 <!-- Javascript Includes-->

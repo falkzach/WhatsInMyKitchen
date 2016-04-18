@@ -1,7 +1,9 @@
 {
   "name": "WhatsInMyKitchen",
   "authors": [
-    "Zachary Falkner <falkzach@gmail.com>"
+    "Zachary Falkner <falkzach@gmail.com>",
+    "Ayechan San <ayechansan@gmail.com>",
+    "Carlos Albaladejo <carlos.alba.padilla@gmail.com>"
   ],
   "description": "UID prototype application",
   "main": "",
