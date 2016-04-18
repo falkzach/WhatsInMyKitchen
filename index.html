@@ -14,33 +14,6 @@
     <link href="./resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
 
-    <!-- JavaScript for drop down selection in FAQ tab -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("select").change(function(){
-                $(this).find("option:selected").each(function(){
-                    if($(this).attr("value")=="kitchenDD"){
-                        $(".box").not(".kitchenDD").hide();
-                        $(".kitchenDD").show();}
-                    else if($(this).attr("value")=="shoppingDD"){
-                        $(".box").not(".shoppingDD").hide();
-                        $(".shoppingDD").show();}
-                    else if($(this).attr("value")=="recipeDD"){
-                        $(".box").not(".recipeDD").hide();
-                        $(".recipeDD").show();}
-                    else if($(this).attr("value")=="userDD"){
-                        $(".box").not(".userDD").hide();
-                        $(".userDD").show();}
-                    else if($(this).attr("value")=="miscDD"){
-                        $(".box").not(".miscDD").hide();
-                        $(".miscDD").show();}
-                    else{
-                        $(".box").hide();}
-                });
-            }).change();
-        });
-    </script>
 </head>
 
 <body>
@@ -393,11 +366,13 @@
 <script src="./resources/js/safedelete.js"></script>
 <script src="./resources/js/recipes.js"></script>
 <script src="./resources/js/kitchen.js"></script>
+<script src="./resources/js/faq.js"></script>
 
 <script>
     template.init();
     recipes.init();
     kitchen.init();
+    faq.init();
 </script>
 
 </body>
