@@ -1,6 +1,8 @@
-<li class="list-group-item" id="kitchenList + {{name}}">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="kitchenList + {{name}} +quantity">{{quantity}} <span class="caret"></span></button>
+<li class="list-group-item" id="{{name}}">
+    <select type="button" role="menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {{quantity}} <span class="caret"></span>
     {{#amountList name quantity}}{{/amountList}}
+    </select>
     {{unit}} | {{name}}
     <a href="#" onclick="kitchen.delete_item($(this).parent().attr('id'))" style="float: right">
         <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc"></span>

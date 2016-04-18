@@ -13,19 +13,25 @@ var template = {
                 source = data;
 
                 Handlebars.registerHelper('amountList', function(name, amount, options) {
-                    var ret = "<ul class='dropdown-menu scrollable-menu' role='menu'>";
-                    
+                    var ret;
+
                     var start = parseInt(amount) - 5;
+
                     while(parseInt(start) < 1) start++;
 
                     var newAmount = 0;
+                    var selected = "";
 
                     for(var i=0; i<10; i++) {
                         newAmount = parseInt(parseInt(start) + parseInt(i));
-                        ret = ret + "<li><a href='#' onclick='kitchen.change_quantity(\"" + name + "\"," + newAmount +")'>" + newAmount + "</a></li>";
+                        if(amount == newAmount)
+                            selected = "selected";
+                        else
+                            selected = "";
+                        ret = ret + "<option " + selected + "><a href='#' >" + newAmount + "</a></option>";
                     }
 
-                    return ret + "</ul>";
+                    return ret;
                 });
 
                 template = Handlebars.compile(source);

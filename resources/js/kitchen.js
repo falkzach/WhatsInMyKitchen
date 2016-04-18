@@ -42,9 +42,15 @@ var kitchen = {
 
     },
 
+    delete_all_items: function() {
+        for(var element in kitchen.items) {
+            kitchen.delete_item(element);
+            kitchen.delete_item(element);
+        }
+    },
+
     change_quantity: function(name, newQ) {
         kitchen.items[name].quantity = newQ;
-        $("#kitchenList" + name + "quantity").html(newQ);
     }
 
 };

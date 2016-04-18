@@ -91,7 +91,7 @@
                                 <li><a href="#">Sort by Name</a></li>
                                 <li><a href="#">Sort by Recently Added</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Remove All Items</a></li>
+                                <li><a href="#" onclick="kitchen.delete_all_items()">Remove All Items</a></li>
                             </ul>
 
                         </div>
@@ -127,7 +127,12 @@
                                 <input type="text" id="item_quantity" required aria-required="true"/>
 
                                 <label for="item_unit"></label>
-                                <input type="text" id="item_unit" required aria-required="true"/>
+                                <select id="item_unit" required aria-required="true" class="btn btn-default dropdown-toggle">
+                                    <option value="Grams"> Grams </option>";
+                                    <option value="Kg"> Kg </option>";
+                                    <option value="Units"> Units </option>";
+                                    <option value="Liters"> Liters </option>";
+                                </select>
 
                             </div>
                             <div class="modal-footer">
