@@ -1,8 +1,6 @@
 <li class="list-group-item" id="{{name}}">
-    <select type="button" role="menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {{quantity}} <span class="caret"></span>
-    {{#amountList name quantity}}{{/amountList}}
-    </select>
+    <input type="number" min="0" value="{{quantity}}">
+
     {{unit}} | {{name}}
     <a href="#" onclick="kitchen.delete_item($(this).parent().attr('id'))" style="float: right">
         <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc"></span>
