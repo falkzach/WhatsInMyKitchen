@@ -25,8 +25,8 @@ var recipes = {
         });
     },
 
-    add_recipe: function(name, available) {
-        var context = {name: name, available: available};
+    add_recipe: function(name, available, ingredients, directions) {
+        var context = {name: name, available: available, ingredients: ingredients, directions: directions};
         recipes.recipes[context.name] = context;
         recipes._add_recipe_li(context);
     },
