@@ -37,6 +37,14 @@ var recipes = {
             $("#" + name).remove();
         });
 
+    },
+
+    delete_all_recipes: function() {
+        for(var r in recipes.recipes)
+        {
+            delete recipes.recipes[r.toString()];
+            $("#" + r.toString()).remove();
+        }
     }
 
 };
