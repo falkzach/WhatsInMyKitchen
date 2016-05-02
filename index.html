@@ -36,7 +36,7 @@
                 <span class="glyphicon glyphicon-book glyphicon-user" style="color: #555555"></span></a>
             </li>
             <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
-                <span class="glyphicon glyphicon-wrench glyphicon-user" style="color: #555555"></span></a>
+                <span class="glyphicon glyphicon-cog glyphicon-user" style="color: #555555"></span></a>
             </li>
         </ul>
 
@@ -128,6 +128,29 @@
                                     newboxes[x].style.display = 'block';}
                                 else {
                                     newboxes[x].style.display = 'none';}
+                            }
+                        }
+                    }
+
+                    function clearChildren(elementId)
+                    {
+                        element = document.getElementById(elementId);
+                        for (var i = 0; i < element.childNodes.length; i++) {
+                            var e = element.childNodes[i];
+                            if (e.tagName) switch (e.tagName.toLowerCase()) {
+                                case 'input':
+                                    switch (e.type) {
+                                        case "radio":
+                                        case "checkbox": e.checked = false; break;
+                                        case "button":
+                                        case "submit":
+                                        case "image": break;
+                                        default: e.value = ''; break;
+                                    }
+                                    break;
+                                case 'select': e.selectedIndex = 0; break;
+                                case 'textarea': e.innerHTML = ''; break;
+                                default: clearChildren(e);
                             }
                         }
                     }
@@ -355,6 +378,58 @@
                     </div>
                 </div>
             </nav>
+
+            <!-- User information -->
+            <h3><span class="label label-default center-block" for="newNameInout">User Name</span></h3>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="newNameInout" placeholder="New name">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" >Change</button>
+                    </span>
+                </div>
+            </div>
+            <hr/>
+
+            <!-- Measurements -->
+            <h3><span class="label label-default center-block" for="newUnitInput">Measurement Units</span></h3>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="newUnitInput" placeholder="New Unit">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearChildren('newUnitInput')">Add</button>
+                    </span>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">List of units
+                        <span class="caret"></span></button>
+                    <ul class="list-group dropdown-menu dropdown-scrollable" id="unitTableSettings">
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+
+            <!-- Kitchens accounts -->
+            <h3><span class="label label-default center-block" for="kitchenAccounts">Your Kitchens:</span></h3>
+            <h4><span class="label label-info" for="kitchenAccounts">Current Kitchen:</span>
+                <label id = "actualKitchenLabel">My Kitchen</label>
+            </h4>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="newKitchenInput" placeholder="New Kitchen">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearChildren('newKitchenInput')">Create</button>
+                    </span>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">List of Kitchens
+                        <span class="caret"></span></button>
+                    <ul class="list-group dropdown-menu dropdown-scrollable" id="unitTableSettings">
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+
         </div>
     </div>
 </div>
@@ -397,6 +472,7 @@
 <!-- Custom Javascript -->
 <script src="./resources/js/template.js"></script>
 <script src="./resources/js/safedelete.js"></script>
+<script src="./resources/js/settings.js"></script>
 <script src="./resources/js/recipes.js"></script>
 <script src="./resources/js/kitchen.js"></script>
 <script src="./resources/js/faq.js"></script>
@@ -406,6 +482,7 @@
     recipes.init();
     kitchen.init();
     faq.init();
+    settings.init();
     $(window).load(function(){
         $('#login').modal('show');
     });

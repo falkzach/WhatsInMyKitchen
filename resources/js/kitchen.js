@@ -8,7 +8,7 @@ var kitchen = {
     },
 
     items: {
-        "Bananas": {name: "Bananas", quantity: 2, unit: ""},
+        "Bananas": {name: "Bananas", quantity: 2, unit: "Units"},
         "Cookies": {name: "Cookies", quantity: 3, unit: "Units"},
         "Lettuce": {name: "Lettuce", quantity: 4, unit: "Grams"},
         "Eggs": {name: "Eggs", quantity: 5, unit: "Units"}
