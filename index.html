@@ -134,6 +134,7 @@
 
                     function clearChildren(elementId)
                     {
+                        //console.log("Clearing: " + elementId);
                         element = document.getElementById(elementId);
                         for (var i = 0; i < element.childNodes.length; i++) {
                             var e = element.childNodes[i];
@@ -142,8 +143,8 @@
                                     switch (e.type) {
                                         case "radio":
                                         case "checkbox": e.checked = false; break;
-                                        case "button":
-                                        case "submit":
+                                        case "button": e.value = ''; break;
+                                        case "submit": e.value = ''; break;
                                         case "image": break;
                                         default: e.value = ''; break;
                                     }
@@ -153,6 +154,12 @@
                                 default: clearChildren(e);
                             }
                         }
+                    }
+
+                    function clearInput(elementId)
+                    {
+                        element = document.getElementById(elementId);
+                        element.value = "";
                     }
                 </script>
             </div>
@@ -380,7 +387,7 @@
             </nav>
 
             <!-- User information -->
-            <h3><span class="label label-default center-block" for="newNameInout">User Name</span></h3>
+            <h3><span class="label label-default center-block">User Name</span></h3>
             <div class="col-lg-6">
                 <div class="input-group">
                     <input type="text" class="form-control" id="newNameInout" placeholder="New name">
@@ -392,12 +399,12 @@
             <hr/>
 
             <!-- Measurements -->
-            <h3><span class="label label-default center-block" for="newUnitInput">Measurement Units</span></h3>
-            <div class="col-lg-6">
+            <h3><span class="label label-default center-block">Measurement Units</span></h3>
+            <div class="col-lg-6" >
                 <div class="input-group">
                     <input type="text" class="form-control" id="newUnitInput" placeholder="New Unit">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearChildren('newUnitInput')">Add</button>
+                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearInput('newUnitInput')">Add</button>
                     </span>
                 </div>
                 <div class="dropdown">
@@ -410,25 +417,29 @@
             <hr/>
 
             <!-- Kitchens accounts -->
-            <h3><span class="label label-default center-block" for="kitchenAccounts">Your Kitchens:</span></h3>
-            <h4><span class="label label-info" for="kitchenAccounts">Current Kitchen:</span>
-                <label id = "actualKitchenLabel">My Kitchen</label>
+            <h3><span class="label label-default center-block" >Your Kitchens:</span></h3>
+            <h4><span class="label label-info">Current Kitchen:</span>
+                <label id = "actualKitchenLabel">My_Kitchen</label>
             </h4>
             <div class="col-lg-6">
                 <div class="input-group">
                     <input type="text" class="form-control" id="newKitchenInput" placeholder="New Kitchen">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearChildren('newKitchenInput')">Create</button>
+                        <button class="btn btn-success" type="button" onclick="settings.add_kitchen($('#newKitchenInput').val()); clearInput('newKitchenInput')">Create</button>
                     </span>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">List of Kitchens
-                        <span class="caret"></span></button>
-                    <ul class="list-group dropdown-menu dropdown-scrollable" id="unitTableSettings">
-                    </ul>
-                </div>
+                <ul class="kitchen-list-scrollable" style="width: auto" id="kitchenTableSettings">
+                </ul>
             </div>
             <hr/>
+
+            <!-- Notifications -->
+            <h3><span class="label label-default center-block">Notifications</span></h3>
+            <h4><span class="label label-info">Kitchen invitations:</span></h4>
+            <div class="col-lg-6">
+                <ul class="kitchen-list-scrollable" style="width: auto" id="invitationsKitchenSettings">
+                </ul>
+            </div>
 
         </div>
     </div>

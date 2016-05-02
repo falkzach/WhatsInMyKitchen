@@ -4,7 +4,7 @@
 var settings = {
     init: function()
     {
-        settings._populate_units_table();
+        settings._populate_tables();
     },
 
     units: {
@@ -15,6 +15,18 @@ var settings = {
         "Bags": {name: "Bags"},
         "Bottles": {name: "Bottles"},
         "Pieces": {name: "Pieces"}
+    },
+
+    kitchen_accounts: {
+        "My_Kitchen": {name: "My_Kitchen"},
+        "Mum_Kitchen": {name: "Mum_Kitchen"},
+        "Carlos_Kitchen": {name: "Carlos_Kitchen"},
+        "Ayechan_Kitchen": {name: "Ayechan_Kitchen"}
+    },
+
+    kitchen_invitations: {
+        "Grandma_Kitchen": {name: "Grandma_Kitchen"},
+        "Zach_Kitchen": {name: "Zach_Kitchen"}
     },
 
     _add_row_to_table: function(content, tableId)
@@ -28,17 +40,71 @@ var settings = {
         tabBody.appendChild(row);
     },
 
-    _populate_units_table: function()
+    _populate_tables: function()
     {
-        for(var unit in settings.units)
-        {
-            settings._add_row_to_table(unit.toString() , "unitTableSettings");
-        }
+        Object.keys(settings.units).map(function(item) {
+            var context = settings.units[item];
+            settings._add_unit_li(context);
+        });
+        Object.keys(settings.kitchen_accounts).map(function(item) {
+            var context = settings.kitchen_accounts[item];
+            settings._add_kitchen_li(context);
+        });
+        Object.keys(settings.kitchen_invitations).map(function(item) {
+            var context = settings.kitchen_invitations[item];
+            settings._add_kitchen_invitation_li(context);
+        });
     },
 
     add_unit: function(name) {
         var context = {name: name};
         settings.units[context.name] = context;
-        settings._add_row_to_table(context.name.toString(), "unitTableSettings");
+        settings._add_unit_li(context);
+    },
+
+    add_kitchen: function(name) {
+        var context = {name: name};
+        settings.kitchen_accounts[context.name] = context;
+        settings._add_kitchen_li(context);
+    },
+
+    _add_unit_li:function(context){
+        template.get_template('resources/templates/settings_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#unitTableSettings').append(html_string);
+        });
+    },
+
+    _add_kitchen_li:function(context){
+        template.get_template('resources/templates/settings_kitchen_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#kitchenTableSettings').append(html_string);
+        });
+    },
+
+    _add_kitchen_invitation_li:function(context){
+        template.get_template('resources/templates/invitation_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#invitationsKitchenSettings').append(html_string);
+        });
+    },
+
+    delete_measure_unit: function(name) {
+        delete settings.units[name];
+        $("#" + name).remove();
+    },
+
+    delete_kitchen_account: function(name) {
+        delete settings.kitchen_accounts[name];
+        $("#" + name).remove();
+    },
+
+    delete_kitchen_invitation: function(name) {
+        delete settings.kitchen_invitations[name];
+        $("#" + name).remove();
+    },
+
+    select_kitchen: function(name) {
+        $('#actualKitchenLabel').html(name);
     }
 }
