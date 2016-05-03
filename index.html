@@ -43,7 +43,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="margin-bottom: 54px">
     <!-- Tab panes -->
     <div class="tab-content">
 
@@ -115,53 +115,6 @@
                 <div class="userDD box">You have selected Users</div>
                 <div class="miscDD box">You have selected Misc</div>
 
-
-                <!-- Code for showing/hiding answers -->
-                <script>
-                    function showonlyone(chosenBox)
-                    {
-                        var newboxes = document.getElementsByTagName("div");
-                        for(var x=0; x<newboxes.length; x++) {
-                            name = newboxes[x].getAttribute("class");
-                            if (name == 'newboxes') {
-                                if (newboxes[x].id == chosenBox) {
-                                    newboxes[x].style.display = 'block';}
-                                else {
-                                    newboxes[x].style.display = 'none';}
-                            }
-                        }
-                    }
-
-                    function clearChildren(elementId)
-                    {
-                        //console.log("Clearing: " + elementId);
-                        element = document.getElementById(elementId);
-                        for (var i = 0; i < element.childNodes.length; i++) {
-                            var e = element.childNodes[i];
-                            if (e.tagName) switch (e.tagName.toLowerCase()) {
-                                case 'input':
-                                    switch (e.type) {
-                                        case "radio":
-                                        case "checkbox": e.checked = false; break;
-                                        case "button": e.value = ''; break;
-                                        case "submit": e.value = ''; break;
-                                        case "image": break;
-                                        default: e.value = ''; break;
-                                    }
-                                    break;
-                                case 'select': e.selectedIndex = 0; break;
-                                case 'textarea': e.innerHTML = ''; break;
-                                default: clearChildren(e);
-                            }
-                        }
-                    }
-
-                    function clearInput(elementId)
-                    {
-                        element = document.getElementById(elementId);
-                        element.value = "";
-                    }
-                </script>
             </div>
 
 
@@ -234,7 +187,7 @@
 
                     <div class="navbar-header">
                         <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" data-toggle="modal" data-target="#addKitchenItem" style="float: left"></button>
-                        <a class="navbar-brand" href="#">My Kitchen</a>
+                        <a class="navbar-brand" href="#" id="kitchenListName">My_Kitchen</a>
                         <div class="dropdown" style="float: right">
                             <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary dropdown-toggle" type="button" id="dropdownMenuKitchen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: right">
 
@@ -255,7 +208,6 @@
             <div class="container">
                 <ul class="list-group" id="kitchen_list">
                 </ul>
-
             </div>
 
             <!-- Modal -->
@@ -270,26 +222,27 @@
                             <div class="modal-body">
 
                                 <label for="item_name">Name</label>
-                                <input type="text" id="item_name" required aria-required="true"/>
+                                <input type="text" class="form-control" id="item_name" required aria-required="true"/>
 
                             </div>
                             <div class="modal-body">
-
                                 <label for="item_quantity">Quantity</label>
-                                <input type="text" id="item_quantity" required aria-required="true"/>
-
-                                <label for="item_unit"></label>
-                                <select id="item_unit" required aria-required="true" class="btn btn-default dropdown-toggle">
-                                    <option value="Grams"> Grams </option>";
-                                    <option value="Kg"> Kg </option>";
-                                    <option value="Units"> Units </option>";
-                                    <option value="Liters"> Liters </option>";
-                                </select>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="item_quantity" placeholder="Quantity">
+                                    <span class="input-group-btn">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="add_item_unit_list_head" value="Units">Units
+                                                </button><span class="caret"></span>
+                                            <ul class="dropdown-menu dropdown-menu-right" id="add_unit_Table">
+                                            </ul>
+                                        </div>
+                                    </span>
+                                </div>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#item_unit').val())" data-dismiss="modal">Add</button>
+                                <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#add_item_unit_list_head').attr('value'))" data-dismiss="modal">Add</button>
                             </div>
                         </form>
                     </div>
@@ -388,12 +341,31 @@
 
             <!-- User information -->
             <h3><span class="label label-default center-block">User Name</span></h3>
+            <h4><span class="label label-info">Your Username:</span>
+                <label id = "current_user_label"></label>
+            </h4>
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="newNameInout" placeholder="New name">
+                    <input type="text" class="form-control" id="newNameInput" placeholder="New Username">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" >Change</button>
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#change_name_notification"
+                                onclick="settings.select_user($('#newNameInput').val()); clearInput('newNameInput');
+                         $('#username_notification').html('New Username: ' + settings.current_user['user'].name)">Change</button>
                     </span>
+                    <!-- Popup-->
+                    <div class="modal fade" id="change_name_notification" tabindex="-1" role="dialog" aria-labelledby="change_name_notification" style="background-color: #999999">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background-color: #f7ecb5">
+                                <div class="modal-body">
+                                    <p style="font-size: large; font-family: 'Liberation Serif'" id="username_notification"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Popup-->
                 </div>
             </div>
             <hr/>
@@ -404,9 +376,26 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="newUnitInput" placeholder="New Unit">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button" onclick="settings.add_unit($('#newUnitInput').val()); clearInput('newUnitInput')">Add</button>
+                        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#add_unit_notification"
+                                onclick="settings.add_unit($('#newUnitInput').val());
+                        $('#add_unit_notification_text').html('Unit added: ' + settings.units[$('#newUnitInput').val()].name);
+                        clearInput('newUnitInput');">Add</button>
                     </span>
                 </div>
+                <!-- Popup-->
+                <div class="modal fade" id="add_unit_notification" tabindex="-1" role="dialog" aria-labelledby="add_unit_notification" style="background-color: #999999">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color: #f7ecb5">
+                            <div class="modal-body">
+                                <p style="font-size: large; font-family: 'Liberation Serif'" id="add_unit_notification_text"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Popup-->
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">List of units
                         <span class="caret"></span></button>
@@ -425,13 +414,30 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="newKitchenInput" placeholder="New Kitchen">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button" onclick="settings.add_kitchen($('#newKitchenInput').val()); clearInput('newKitchenInput')">Create</button>
+                        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#kitchen_change_notification"
+                                onclick="settings.add_kitchen($('#newKitchenInput').val());
+                                $('#kitchen_change_notification_text').html('Added kitchen : ' + settings.kitchen_accounts[$('#newKitchenInput').val()].name);
+                                clearInput('newKitchenInput')">Create</button>
                     </span>
                 </div>
                 <ul class="kitchen-list-scrollable" style="width: auto" id="kitchenTableSettings">
                 </ul>
             </div>
             <hr/>
+            <!-- Popup-->
+            <div class="modal fade" id="kitchen_change_notification" tabindex="-1" role="dialog" aria-labelledby="kitchen_change_notification" style="background-color: #999999">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color: #f7ecb5">
+                        <div class="modal-body">
+                            <p style="font-size: large; font-family: 'Liberation Serif'" id="kitchen_change_notification_text"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Popup-->
 
             <!-- Notifications -->
             <h3><span class="label label-default center-block">Notifications</span></h3>
@@ -471,7 +477,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 <!-- Javascript Includes-->
@@ -483,6 +489,7 @@
 <!-- Custom Javascript -->
 <script src="./resources/js/template.js"></script>
 <script src="./resources/js/safedelete.js"></script>
+<script src="./resources/js/helpers.js"></script>
 <script src="./resources/js/settings.js"></script>
 <script src="./resources/js/recipes.js"></script>
 <script src="./resources/js/kitchen.js"></script>
