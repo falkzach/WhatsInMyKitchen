@@ -251,7 +251,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#add_item_unit_list_head').attr('value'))" data-dismiss="modal">Add</button>
+                                <button type="button" class="btn btn-success"
+                                        onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#add_item_unit_list_head').attr('value'));
+                                        $('#kitchen_list_notification_text').html('Added ' + $('#item_quantity').val() + ' ' + $('#add_item_unit_list_head').attr('value')
+                                        + ' of ' + $('#item_name').val());"
+                                        data-dismiss="modal" data-toggle="modal" data-target="#kitchen_list_notification">Add</button>
                             </div>
                         </form>
                     </div>
@@ -275,12 +279,29 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success" onclick="kitchen.add_category($('#add_kitchen_category_name').val())" data-dismiss="modal">Add</button>
+                                <button type="button" class="btn btn-success" onclick="kitchen.add_category($('#add_kitchen_category_name').val());
+                                        $('#kitchen_list_notification_text').html('Added ' + $('#add_kitchen_category_name').val() + ' category');"
+                                        data-dismiss="modal" data-toggle="modal" data-target="#kitchen_list_notification">Add</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Popup-->
+            <div class="modal fade" id="kitchen_list_notification" tabindex="-1" role="dialog" aria-labelledby="kitchen_list_notification" style="background-color: #999999">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content" style="background-color: #f7ecb5">
+                        <div class="modal-body">
+                            <p style="font-size: large; font-family: 'Liberation Serif'" id="kitchen_list_notification_text"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Popup-->
 
         </div>
 
@@ -378,7 +399,7 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content" style="background-color: #f7ecb5">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="settings.check_notifications()"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Notifications</h4>
                         </div>
                         <div class="modal-body">
@@ -390,7 +411,7 @@
                                 <ul class="kitchen-list-scrollable" style="width: auto" id="kitchen_invit_list_popup">
                                 </ul>
                                 <h4><span class="label label-primary">Other notifications:</span></h4>
-                                <ul class="kitchen-list-scrollable" style="width: auto" id="other_notif_list"></ul>
+                                <ul class="kitchen-list-scrollable" style="width: auto" id="other_notif_list_popup"></ul>
                             </div>
                         </div>
                         <div class="modal-footer">
