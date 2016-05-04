@@ -5,6 +5,7 @@ var settings = {
     init: function()
     {
         settings._populate_tables();
+        settings.check_notifications();
     },
 
     units: {
@@ -97,6 +98,7 @@ var settings = {
         template.get_template('resources/templates/invitation_li.handlebars', function(t) {
             var html_string = template.get_html(t, context);
             $('#invitationsKitchenSettings').append(html_string);
+            $('#kitchen_invit_list_popup').append(html_string);
         });
     },
 
@@ -136,5 +138,27 @@ var settings = {
         $('#current_user_label').html(new_user);
         var context = {name: new_user};
         settings.current_user["user"] = context;
+    },
+
+    check_notifications: function()
+    {
+        var size = getSize(settings.kitchen_invitations);
+        //console.log("Number of notifications: " + size);
+        if(size == 0)
+        {
+            $('#settings_notif_button').removeClass('btn-warning');
+            $('#settings_notif_button').addClass('btn-default');
+            $('#settings_notif_popup_text').show();
+            $('#kitchen_invit_list_popup_div').hide();
+            $('#settings_navbar_icon').css('color','#555555');
+        }
+        else
+        {
+            $('#settings_notif_button').removeClass('btn-default');
+            $('#settings_notif_button').addClass('btn-warning');
+            $('#settings_notif_popup_text').hide();
+            $('#kitchen_invit_list_popup_div').show();
+            $('#settings_navbar_icon').css('color','#FF8000');
+        }
     }
 }
