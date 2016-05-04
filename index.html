@@ -331,7 +331,7 @@
         <!-- SETTINGS -->
         <div role="tabpanel" class="tab-pane" id="settings">
             <!-- Fixed navbar top -->
-            <nav class="navbar navbar-default navbar-fixed-top">
+            <nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom: 0em">
                 <div class="container">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Settings</a>
@@ -340,7 +340,7 @@
             </nav>
 
             <!-- User information -->
-            <h3><span class="label label-default center-block">User Name</span></h3>
+            <h3 style="margin-top: 0;"><span class="label label-default center-block">User Name</span></h3>
             <h4><span class="label label-info">Your Username:</span>
                 <label id = "current_user_label"></label>
             </h4>
@@ -354,7 +354,7 @@
                     </span>
                     <!-- Popup-->
                     <div class="modal fade" id="change_name_notification" tabindex="-1" role="dialog" aria-labelledby="change_name_notification" style="background-color: #999999">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-sm" role="document">
                             <div class="modal-content" style="background-color: #f7ecb5">
                                 <div class="modal-body">
                                     <p style="font-size: large; font-family: 'Liberation Serif'" id="username_notification"></p>
@@ -384,7 +384,7 @@
                 </div>
                 <!-- Popup-->
                 <div class="modal fade" id="add_unit_notification" tabindex="-1" role="dialog" aria-labelledby="add_unit_notification" style="background-color: #999999">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content" style="background-color: #f7ecb5">
                             <div class="modal-body">
                                 <p style="font-size: large; font-family: 'Liberation Serif'" id="add_unit_notification_text"></p>
@@ -426,13 +426,29 @@
             <hr/>
             <!-- Popup-->
             <div class="modal fade" id="kitchen_change_notification" tabindex="-1" role="dialog" aria-labelledby="kitchen_change_notification" style="background-color: #999999">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content" style="background-color: #f7ecb5">
                         <div class="modal-body">
                             <p style="font-size: large; font-family: 'Liberation Serif'" id="kitchen_change_notification_text"></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Popup-->
+
+            <!-- Popup-->
+            <div class="modal fade" id="confirm_popup" tabindex="-1" role="dialog" aria-labelledby="confirm_popup" style="background-color: #999999">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content" style="background-color: #f7ecb5">
+                        <div class="modal-body">
+                            <p style="font-size: large; font-family: 'Liberation Serif'" id="confirm_popup_text"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="confirm_popup_accept">Accept</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>

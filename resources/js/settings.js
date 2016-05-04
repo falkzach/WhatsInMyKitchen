@@ -24,7 +24,7 @@ var settings = {
         "Ayechan_Kitchen": {name: "Ayechan_Kitchen"}
     },
 
-    current_kitchen: {"My_Kitchen": {name: "My_Kitchen"}},
+    current_kitchen: {"kitchen": {name: "My_Kitchen"}},
 
     current_user: {"user": {name: "Default_User"}},
 
@@ -123,7 +123,7 @@ var settings = {
         }
         $('#actualKitchenLabel').html(new_kitchen);
         $('#kitchenListName').html(new_kitchen);
-        settings.current_kitchen = settings.kitchen_accounts[new_kitchen];
+        settings.current_kitchen["kitchen"] = {name: new_kitchen};
     },
 
     select_user: function (new_user) {
