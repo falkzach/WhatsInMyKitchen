@@ -98,6 +98,9 @@ var settings = {
         template.get_template('resources/templates/invitation_li.handlebars', function(t) {
             var html_string = template.get_html(t, context);
             $('#invitationsKitchenSettings').append(html_string);
+        });
+        template.get_template('resources/templates/invitation_popup_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
             $('#kitchen_invit_list_popup').append(html_string);
         });
     },
@@ -113,8 +116,10 @@ var settings = {
     },
 
     delete_kitchen_invitation: function(name) {
+        console.log("Deleting invitation to: " + name)
         delete settings.kitchen_invitations[name];
         $("#" + name).remove();
+        $("#" + name + "_popup").remove();
     },
 
     select_kitchen: function(new_kitchen) {

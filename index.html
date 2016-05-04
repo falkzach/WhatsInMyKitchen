@@ -186,10 +186,19 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" data-toggle="modal" data-target="#addKitchenItem" style="float: left"></button>
+                        <div class="dropdown" style="float: left">
+                            <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary dropdown-toggle"
+                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: left"></button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuKitchen">
+                                <li><a href="#" data-toggle="modal" data-target="#addKitchenItem">Add Item</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#" data-toggle="modal" data-target="#add_kitchen_category">Add Category</a></li>
+                            </ul>
+                        </div>
                         <a class="navbar-brand" href="#" id="kitchenListName">My_Kitchen</a>
                         <div class="dropdown" style="float: right">
-                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary dropdown-toggle" type="button" id="dropdownMenuKitchen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: right">
+                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary dropdown-toggle"
+                                    type="button" id="dropdownMenuKitchen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: right">
 
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenuKitchen">
@@ -206,11 +215,11 @@
             </nav>
 
             <div class="container">
-                <ul class="list-group" id="kitchen_list">
+                <ul class="draggablePanelList list-unstyled" id="kitchen_list">
                 </ul>
             </div>
 
-            <!-- Modal -->
+            <!-- Add Item Modal -->
             <div class="modal fade" id="addKitchenItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -243,6 +252,30 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success" onclick="kitchen.add_item($('#item_name').val(), $('#item_quantity').val(), $('#add_item_unit_list_head').attr('value'))" data-dismiss="modal">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Category modal-->
+            <div class="modal fade" id="add_kitchen_category" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Add Category</h4>
+                        </div>
+                        <form>
+                            <div class="modal-body">
+
+                                <label for="item_name">Category name Name</label>
+                                <input type="text" class="form-control" id="add_kitchen_category_name" required aria-required="true"/>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" onclick="kitchen.add_category($('#add_kitchen_category_name').val())" data-dismiss="modal">Add</button>
                             </div>
                         </form>
                     </div>
@@ -476,7 +509,7 @@
                             <p style="font-size: large; font-family: 'Liberation Serif'" id="confirm_popup_text"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal" id="confirm_popup_accept">Accept</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="confirm_popup_accept" onclick="settings.check_notifications()">Accept</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -535,6 +568,8 @@
 <script src="./resources/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="./resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="./resources/bower_components/handlebars/handlebars.min.js"></script>
+<script src="./resources/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="./resources/jquery.ui.touch-punch.min.js"></script>
 
 <!-- Custom Javascript -->
 <script src="./resources/js/template.js"></script>

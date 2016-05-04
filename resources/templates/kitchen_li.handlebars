@@ -1,7 +1,9 @@
-<li class="list-group-item" id="{{name}}">
-    <input type="number" min="0" value="{{quantity}}">
-    {{unit}} | {{name}}
-    <a href="#" onclick="kitchen.delete_item($(this).parent().attr('id'))" style="float: right">
-        <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc"></span>
-    </a>
+<li class="panel panel-default" style="margin-bottom: 0px; padding: 0px" id="{{name}}">
+    <div class="panel-heading" style="font-size: large; font-family: 'Comic Sans MS'">
+        <input type="number" min="0" value="{{quantity}}" style="width: 20%">
+        {{unit}} | {{name}}
+        <a href="#" onclick="kitchen.delete_item('{{name}}')" style="float: right">
+            <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc; float: right"></span>
+        </a>
+    </div>
 </li>

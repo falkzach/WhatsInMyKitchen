@@ -109,3 +109,6 @@ body
     height: auto;
 }
 
+.draggablePanelList .panel-heading {
+    cursor: move;
+}
