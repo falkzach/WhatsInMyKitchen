@@ -8,7 +8,7 @@ var recipes = {
         "Cupcakes": {name: "Cupcakes", available: true},
         "Cookies": {name: "Cookies", available: false},
         "Sushi": {name: "Sushi", available: true},
-        "Apple Pie": {name: "Apple Pie", available: true}
+        "Apple_Pie": {name: "Apple_Pie", available: true}
     },
 
     _add_initial_recipes: function() {
@@ -32,9 +32,10 @@ var recipes = {
     },
 
     delete_recipe: function(name) {
+        console.log('Deleting recipe: '+ name);
         safedelete.protect("#recipeDelete-" + name, function(){
             delete recipes.recipes[name];
-            $("#" + name).remove();
+            $("#" + name + "_recipe").remove();
         });
 
     },
@@ -42,8 +43,8 @@ var recipes = {
     delete_all_recipes: function() {
         for(var r in recipes.recipes)
         {
-            delete recipes.recipes[r.toString()];
-            $("#" + r.toString()).remove();
+            recipes.delete_recipe(r);
+            recipes.delete_recipe(r);
         }
     }
 

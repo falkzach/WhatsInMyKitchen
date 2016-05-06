@@ -85,6 +85,14 @@ var settings = {
             var html_string = template.get_html(t, context);
             $('#add_unit_Table').append(html_string);
         });
+        template.get_template('resources/templates/edit_item_quantity_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#edit_unit_Table').append(html_string);
+        });
+        template.get_template('resources/templates/add_shop_item_unit_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#add_shop_unit_Table').append(html_string);
+        });
     },
 
     _add_kitchen_li:function(context){
@@ -98,6 +106,9 @@ var settings = {
         template.get_template('resources/templates/invitation_li.handlebars', function(t) {
             var html_string = template.get_html(t, context);
             $('#invitationsKitchenSettings').append(html_string);
+        });
+        template.get_template('resources/templates/invitation_popup_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
             $('#kitchen_invit_list_popup').append(html_string);
         });
     },
@@ -113,8 +124,10 @@ var settings = {
     },
 
     delete_kitchen_invitation: function(name) {
+        console.log("Deleting invitation to: " + name)
         delete settings.kitchen_invitations[name];
         $("#" + name).remove();
+        $("#" + name + "_popup").remove();
     },
 
     select_kitchen: function(new_kitchen) {

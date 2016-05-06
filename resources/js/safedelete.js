@@ -18,7 +18,8 @@ var safedelete = {
                     safedelete.clicked[selector] = null;
                     window.clearInterval(timer);
                 } ,2000);
+
         }
-        
+        event.stopPropagation();
     }
 };
