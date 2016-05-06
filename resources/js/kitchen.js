@@ -63,6 +63,18 @@ var kitchen = {
         kitchen._add_item_li(context);
     },
 
+    edit_item: function(name, quantity, unit) {
+        if(name == "" || quantity == "" || unit == "")
+        {
+            console.log("ERROR in edit item input: " + name + "," + quantity + "," + unit + ";");
+            return;
+        }
+        var context = {name: name, quantity: quantity, unit: unit};
+        kitchen.items[context.name] = context;
+        $("#" + name).remove();
+        kitchen._add_item_li(context);
+    },
+
     add_category: function (new_category) {
         if(new_category == "")
         {

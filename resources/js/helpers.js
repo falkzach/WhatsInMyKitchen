@@ -7,6 +7,12 @@ function printHtmlById(elementId, content)
     $('#'+elementId).val(content);
 }
 
+function printHtmlByClass(elementId, content)
+{
+    $('.'+elementId).html(content);
+    $('.'+elementId).val(content);
+}
+
 function showonlyone(chosenBox)
 {
     var newboxes = document.getElementsByTagName("div");
@@ -72,10 +78,30 @@ jQuery(function($) {
             $('.panel', panelList).each(function(index, elem) {
                 var $listItem = $(elem),
                     newIndex = $listItem.index();
-
                 // Persist the new indices.
             });
         }
     });
+
+    $('#cart_image_container').sortable({
+        placeholder: 'cartPlaceholder',
+        update: function (event, ui) {
+            ui.item.hide();
+            // Do what you need to to delete the item from the database
+        }
+    });
+
+    $('#cart_image').sortable({
+        opacity: 0.6,
+        cursor: 'move',
+        revert: true,
+        delay: 250,
+        tolerance: 'intersect',
+        placeholder: 'draggingPlaceholder',
+        connectWith: '#cart_image_container'
+    });
+    
 });
+
+
 

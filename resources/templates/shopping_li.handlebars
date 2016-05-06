@@ -1,12 +1,12 @@
-<li class="panel panel-default" style="margin-bottom: 0px; padding: 0px" id="{{name}}" data-toggle="modal" data-target="#edit_item_popup"
+<li class="panel panel-warning" style="margin-bottom: 0px; padding: 0px" id="{{name}}_shopping" data-toggle="modal" data-target="#edit_item_popup"
     onclick="printHtmlById('edit_item_name', '{{name}}'); printHtmlById('item_quantity_edit_shopping','{{quantity}}');
             printHtmlById('edit_item_unit_list_head','{{unit}}');
-            $('#edit_item_popup_apply').attr('onclick','kitchen.edit_item( $(\'#edit_item_name\').val(), $(\'#item_quantity_edit_shopping\').val(), ' +
+            $('#edit_item_popup_apply').attr('onclick','shopping.edit_item( $(\'#edit_item_name\').val(), $(\'#item_quantity_edit_shopping\').val(), ' +
             '$(\'#edit_item_unit_list_head\').attr(\'value\'));$(\'#notification_popup_text\').html(\'Edited \' + $(\'#edit_item_name\').val());')">
     <div class="panel-heading" style="font-size: large; font-family: 'Comic Sans MS'">
         <input type="number" min="0" value="{{quantity}}" style="width: 20%">
         {{unit}} | {{name}}
-        <a href="#" onclick="kitchen.delete_item('{{name}}')" style="float: right">
+        <a href="#" onclick="shopping.delete_item('{{name}}')" style="float: right">
             <span class="glyphicon glyphicon-remove glyphicon-user" id="itemDelete-{{name}}" style="color:#cccccc; float: right"></span>
         </a>
     </div>

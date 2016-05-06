@@ -159,23 +159,16 @@
                 </div>
             </nav>
 
-            <!-- Shopping list: Drag items from here -->
-            <ol data-draggable="target">
-                <li data-draggable="item">Item 0</li>
-                <li data-draggable="item">Item 1</li>
-                <li data-draggable="item">Item 2</li>
-                <li data-draggable="item">Item 4</li>
-                <li data-draggable="item">Item 5</li>
-                <li data-draggable="item">Item 3</li>
-            </ol>
+            <div class="container">
+                <ul class="draggablePanelList list-unstyled" id="shopping_list">
+                </ul>
+            </div>
 
-            <!-- Shopping Cart: Add items to here -->
-            <ol data-draggable="target">
-                Add items to here
-            </ol>
-
-            <!-- Call drag and drop code -->
-            <script src="./resources/js/dragdrop.js"></script>
+            <div id="cart_image_container" style="position: absolute; bottom: 56px; right: 0;">
+                <img src = "./resources/img/icons/cart.png" class="img-rounded draggablePanelList"
+                 style="width: 40%; height: 20%; "
+                id="cart_image">
+            </div>
         </div>
 
 
@@ -205,7 +198,10 @@
                                 <li><a href="#">Sort by Name</a></li>
                                 <li><a href="#">Sort by Recently Added</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#" onclick="kitchen.delete_all_items()">Remove All Items</a></li>
+                                <li><a href="#" onclick="
+                                    $('#confirm_popup_text').html('Are you sure you want to delete EVERYTHING?');
+                                    $('#confirm_popup_accept').attr('onclick', 'kitchen.delete_all_items()')"
+                                    data-toggle="modal" data-target="#confirm_popup">Remove All Items</a></li>
                             </ul>
 
                         </div>
@@ -387,7 +383,7 @@
             <!-- Fixed navbar top -->
             <nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom: 0em">
                 <div class="container">
-                    <div class="navbar-header">
+                    <div class="navbar-header" style="padding-left: 70px">
                         <a class="navbar-brand" href="#">Settings</a>
                         <button class="glyphicon glyphicon-bell btn btn-warning" id="settings_notif_button" data-toggle="modal" data-target="#settings_notif_popup" style="float: right"></button>
                     </div>
@@ -522,21 +518,7 @@
             </div>
             <!-- END Popup-->
 
-            <!-- Popup-->
-            <div class="modal fade" id="confirm_popup" tabindex="-1" role="dialog" aria-labelledby="confirm_popup" style="background-color: #999999">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content" style="background-color: #f7ecb5">
-                        <div class="modal-body">
-                            <p style="font-size: large; font-family: 'Liberation Serif'" id="confirm_popup_text"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal" id="confirm_popup_accept" onclick="settings.check_notifications()">Accept</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Popup-->
+
 
             <!-- Notifications -->
             <h3><span class="label label-default center-block">Notifications</span></h3>
@@ -554,6 +536,75 @@
         </div>
     </div>
 </div>
+<!-- Edit Item Modal -->
+<div class="modal fade" id="edit_item_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalLabelEdit_shopping">Edit Item</h4>
+            </div>
+            <form>
+                <div class="modal-body">
+
+                    <label for="edit_item_name" id="edit_item_name"></label>
+
+                </div>
+                <div class="modal-body">
+                    <label for="item_quantity_edit_shopping">Quantity</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="item_quantity_edit_shopping">
+                            <span class="input-group-btn">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle unit_list" type="button" data-toggle="dropdown" id="edit_item_unit_list_head" value="Units">Units
+                                    </button><span class="caret"></span>
+                                    <ul class="dropdown-menu dropdown-menu-right unit_Table" id="edit_unit_Table">
+                                    </ul>
+                                </div>
+                            </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="edit_item_popup_apply"
+                            data-dismiss="modal" data-toggle="modal" data-target="#notification_popup">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Popup-->
+<div class="modal fade" id="notification_popup" tabindex="-1" role="dialog" aria-labelledby="notification_popup" style="background-color: #999999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="background-color: #f7ecb5">
+            <div class="modal-body">
+                <p style="font-size: large; font-family: 'Liberation Serif'" id="notification_popup_text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Popup-->
+
+<!-- Popup-->
+<div class="modal fade" id="confirm_popup" tabindex="-1" role="dialog" aria-labelledby="confirm_popup" style="background-color: #999999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="background-color: #f7ecb5">
+            <div class="modal-body">
+                <p style="font-size: large; font-family: 'Liberation Serif'" id="confirm_popup_text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="confirm_popup_accept" onclick="settings.check_notifications()">Accept</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Popup-->
 
 <!-- Log In -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login">
@@ -600,6 +651,7 @@
 <script src="./resources/js/recipes.js"></script>
 <script src="./resources/js/kitchen.js"></script>
 <script src="./resources/js/faq.js"></script>
+<script src="./resources/js/shopping_list.js"></script>
 
 <script>
     template.init();
@@ -607,6 +659,7 @@
     kitchen.init();
     faq.init();
     settings.init();
+    shopping.init();
     $(window).load(function(){
         $('#login').modal('show');
     });
