@@ -1,0 +1,15 @@
+<li class="list-kitchen"  style="margin-left: 10px;" id="{{name}}_cart">
+    <a href="#" data-toggle="modal" data-target="#cart_notification_popup"
+       onclick="$('#cart_notification_popup_text').html('Exported {{name}} to kitchen');
+            shopping.from_cart_to_kitchen('{{name}}'); shopping.check_empty();"
+       style="float: right;">
+        <span class="fridge-icon" id="import-{{name}}" style="color:#008000;"></span>
+    </a>
+    {{name}}
+    <a href="#" onclick="$('#cart_notification_popup_text').html('{{name}} returned to shopping list');
+            shopping.from_cart_to_list('{{name}}'); shopping.check_empty();"
+       style="float: right" data-toggle="modal" data-target="#cart_notification_popup">
+        <span class="glyphicon glyphicon-triangle-left glyphicon-user" id="return-{{name}}" style="color:#a94442"></span>
+    </a>
+    <hr/>
+</li>

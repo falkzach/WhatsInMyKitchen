@@ -89,6 +89,10 @@ var settings = {
             var html_string = template.get_html(t, context);
             $('#edit_unit_Table').append(html_string);
         });
+        template.get_template('resources/templates/add_shop_item_unit_li.handlebars', function(t) {
+            var html_string = template.get_html(t, context);
+            $('#add_shop_unit_Table').append(html_string);
+        });
     },
 
     _add_kitchen_li:function(context){

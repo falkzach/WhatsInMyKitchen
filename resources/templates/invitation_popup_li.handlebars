@@ -1,5 +1,5 @@
 <li class="list-kitchen"  style="margin-left: 10px;" id="{{name}}_popup">
-    <a href="#" onclick="settings.add_kitchen($(this).parent().attr('id'));
+    <a href="#" onclick="settings.add_kitchen('{{name}}');
             settings.delete_kitchen_invitation('{{name}}');
             settings.check_notifications();
             $('#kitchen_change_notification_text').html('Accepted invitation to {{name}}');"

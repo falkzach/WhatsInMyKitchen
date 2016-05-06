@@ -1,6 +1,8 @@
-<li class="list-group-item {{#if available}} list-group-item-success {{else}} list-group-item-danger {{/if}}" id="{{name}}">
-    {{name}}
-    <a href="#" onclick="recipes.delete_recipe($(this).parent().attr('id'))" style="float: right">
-        <span class="glyphicon glyphicon-remove glyphicon-user" id="recipeDelete-{{name}}" style="color:#cccccc"></span>
-    </a>
+<li class="panel {{#if available}} panel-success {{else}} panel-danger {{/if}}" id="{{name}}_recipe" style="margin-bottom: 0px; padding: 0px">
+    <div class="panel-heading" style="font-size: large; font-family: 'Comic Sans MS'">
+        {{name}}
+        <a href="#" onclick="recipes.delete_recipe('{{name}}')" style="float: right">
+            <span class="glyphicon glyphicon-remove glyphicon-user" id="recipeDelete-{{name}}" style="color:#cccccc; float: right"></span>
+        </a>
+    </div>
 </li>

@@ -151,7 +151,7 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" style="float: left"></button>
+                        <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" style="float: left" data-toggle="modal" data-target="#add_shopping_item"></button>
                         <a class="navbar-brand" href="#">Shopping List</a>
                         <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary" style="float: right"></button>
                     </div>
@@ -159,17 +159,100 @@
                 </div>
             </nav>
 
+            <!-- Add shopping Item Modal -->
+            <div class="modal fade" id="add_shopping_item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalLabeladd_shopping_item">Add Item</h4>
+                        </div>
+                        <form>
+                            <div class="modal-body">
+
+                                <label for="shop_item_name">Name</label>
+                                <input type="text" class="form-control" id="shop_item_name" required aria-required="true"/>
+
+                            </div>
+                            <div class="modal-body">
+                                <label for="shop_item_quantity">Quantity</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="shop_item_quantity" placeholder="Quantity">
+                                    <span class="input-group-btn">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="add_shop_item_unit_list_head" value="Units">Units
+                                            </button><span class="caret"></span>
+                                            <ul class="dropdown-menu dropdown-menu-right" id="add_shop_unit_Table">
+                                            </ul>
+                                        </div>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success"
+                                        onclick="shopping.add_item($('#shop_item_name').val(), $('#shop_item_quantity').val(), $('#add_shop_item_unit_list_head').attr('value'));
+                                        $('#notification_popup_text').html('Added ' + $('#shop_item_quantity').val() + ' ' + $('#add_shop_item_unit_list_head').attr('value')
+                                        + ' of ' + $('#shop_item_name').val() + ' to Shopping List');"
+                                        data-dismiss="modal" data-toggle="modal" data-target="#notification_popup">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="container">
                 <ul class="draggablePanelList list-unstyled" id="shopping_list">
                 </ul>
             </div>
 
-            <div id="cart_image_container" style="position: absolute; bottom: 56px; right: 0;">
+            <div id="cart_image_container" style="position: absolute; bottom: 56px; right: 0;"
+                 onclick="shopping.check_empty()">
                 <img src = "./resources/img/icons/cart.png" class="img-rounded draggablePanelList"
                  style="width: 40%; height: 20%; "
-                id="cart_image">
+                id="cart_image" data-toggle="modal" data-target="#cart_popup">
             </div>
         </div>
+
+        <!-- Popup-->
+        <div class="modal fade" id="cart_notification_popup" tabindex="-1" role="dialog" aria-labelledby="cart_notification_popup" style="background-color: #999999">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content" style="background-color: #f7ecb5">
+                    <div class="modal-body">
+                        <p style="font-size: large; font-family: 'Liberation Serif'" id="cart_notification_popup_text"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Popup-->
+
+        <!-- Cart Popup-->
+        <div class="modal fade" id="cart_popup" tabindex="-1" role="dialog" aria-labelledby="cart_popup" style="background-color: #999999">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content" style="background-color: #f7ecb5">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="shopping.check_empty()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">CART</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size: large; font-family: 'Liberation Serif'" id="cart_popup_text">
+                            Empty Chart
+                        </p>
+                        <div class="col-lg-6" id="cart_popup_list_div">
+                            <ul class="shopping-list-scrollable" style="width: auto" id="cart_popup_list"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal" onclick="shopping.check_empty()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Popup-->
 
 
         <!-- KITCHEN -->
@@ -181,7 +264,8 @@
                     <div class="navbar-header">
                         <div class="dropdown" style="float: left">
                             <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary dropdown-toggle"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: left"></button>
+                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: left"
+                                    onclick="clearInput('item_name'); clearInput('item_quantity'); clearInput('add_kitchen_category_name')"></button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuKitchen">
                                 <li><a href="#" data-toggle="modal" data-target="#addKitchenItem">Add Item</a></li>
                                 <li role="separator" class="divider"></li>
@@ -269,7 +353,7 @@
                         <form>
                             <div class="modal-body">
 
-                                <label for="item_name">Category name Name</label>
+                                <label for="add_kitchen_category_name">Category name Name</label>
                                 <input type="text" class="form-control" id="add_kitchen_category_name" required aria-required="true"/>
 
                             </div>
@@ -309,10 +393,11 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <button class="glyphicon glyphicon-plus-sign btn btn-default" data-toggle="modal" data-target="#addRecipe" style="float: left"></button>
+                        <button class="glyphicon glyphicon-plus-sign btn btn-primary" data-toggle="modal" data-target="#addRecipe" style="float: left"
+                            onclick="clearInput('recipe_name'); clearInput('recipe_ingredients'); clearInput('recipe_directions')"></button>
                         <a class="navbar-brand" href="#">Recipes</a>
                         <div class="dropdown" style="float: right">
-                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
@@ -329,7 +414,7 @@
             </nav>
 
             <div class="container">
-                <ul class="list-group" id="recipes_list">
+                <ul class="draggablePanelList list-unstyled" id="recipes_list">
                 </ul>
                 <div class = 'form-horizontal well'>
                     <fieldset>
@@ -356,16 +441,16 @@
                             <h4 class="modal-title" id="myModalLabel">Add Recipe</h4>
                         </div>
                         <form>
-                            <div class="modal-body">
+                            <div class="modal-body col-lg-6">
 
                                 <label for="recipe_name">Name</label>
-                                <input type="text" id="recipe_name" required aria-required="true"/>
+                                <input type="text" class="form-control" id="recipe_name" required aria-required="true"/>
                                 <br>
                                 <label for="recipe_ingredients">Ingredients</label>
-                                <textarea type="text" id="recipe_ingredients" required aria-required="true" rows="4" cols="50"></textarea>
+                                <textarea type="text" class="form-control" id="recipe_ingredients" required aria-required="true" rows="4" cols="50"></textarea>
                                 <br>
                                 <label for="recipe_directions">Directions</label>
-                                <textarea type="text" id="recipe_directions" required aria-required="true" rows="4" cols="50"></textarea>
+                                <textarea type="text" class="form-control" id="recipe_directions" required aria-required="true" rows="4" cols="50"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -617,11 +702,11 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <div class="form-group">
+                    <div class="form-group form-group-sm col-lg-6">
                         <label for="username">Username</label>
-                        <input class="form-control" type="text" id="username" required aria-required="true"/><br>
+                        <input class="form-control form-group-sm" type="text" id="username" required aria-required="true"/><br>
                         <label for="password">Password</label>
-                        <input class="form-control" type="password" id="password" required aria-required="true"/>
+                        <input class="form-control form-group-sm" type="password" id="password" required aria-required="true"/>
                     </div>
 
                 </div>

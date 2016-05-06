@@ -3,14 +3,16 @@
  */
 function printHtmlById(elementId, content)
 {
-    $('#'+elementId).html(content);
-    $('#'+elementId).val(content);
+    var element = $('#'+elementId);
+    element.html(content);
+    element.val(content);
 }
 
 function printHtmlByClass(elementId, content)
 {
-    $('.'+elementId).html(content);
-    $('.'+elementId).val(content);
+    var element = $('.'+elementId);
+    element.html(content);
+    element.val(content);
 }
 
 function showonlyone(chosenBox)
@@ -31,6 +33,7 @@ function clearChildren(elementId)
 {
     //console.log("Clearing: " + elementId);
     element = document.getElementById(elementId);
+    if(element == null) return;
     for (var i = 0; i < element.childNodes.length; i++) {
         var e = element.childNodes[i];
         if (e.tagName) switch (e.tagName.toLowerCase()) {
@@ -55,6 +58,7 @@ function clearInput(elementId)
 {
     element = document.getElementById(elementId);
     element.value = "";
+    element.innerHTML = '';
 }
 
 function getSize(obj)
@@ -83,25 +87,22 @@ jQuery(function($) {
         }
     });
 
-    $('#cart_image_container').sortable({
-        placeholder: 'cartPlaceholder',
-        update: function (event, ui) {
-            ui.item.hide();
-            // Do what you need to to delete the item from the database
-        }
-    });
+    var cart = $('#cart_image');
 
-    $('#cart_image').sortable({
-        opacity: 0.6,
-        cursor: 'move',
-        revert: true,
-        delay: 250,
-        tolerance: 'intersect',
-        placeholder: 'draggingPlaceholder',
-        connectWith: '#cart_image_container'
+    var shopping_item = $('.shopping_item');
+
+    shopping_item.draggable();
+    cart.droppable({
+        drop: handleDropEvent
     });
     
 });
+
+function handleDropEvent( event, ui ) {
+    var draggable = ui.draggable;
+    var identificator = draggable.attr('id');
+    shopping.from_list_to_cart(identificator);
+}
 
 
 
