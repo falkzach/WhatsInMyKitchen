@@ -8,7 +8,7 @@ var kitchen = {
     },
 
     items: {
-        "Bananas": {name: "Bananas", quantity: 2, unit: ""},
+        "Bananas": {name: "Bananas", quantity: 2, unit: "Units"},
         "Cookies": {name: "Cookies", quantity: 3, unit: "Units"},
         "Lettuce": {name: "Lettuce", quantity: 4, unit: "Grams"},
         "Eggs": {name: "Eggs", quantity: 5, unit: "Units"}
@@ -29,6 +29,11 @@ var kitchen = {
     },
 
     add_item: function(name, quantity, unit) {
+        if(name == "" || quantity == "" || unit == "")
+        {
+            console.log("ERROR in add item input: " + name + "," + quantity + "," + unit + ";");
+            return;
+        }
         var context = {name: name, quantity: quantity, unit: unit};
         kitchen.items[context.name] = context;
         kitchen._add_item_li(context);

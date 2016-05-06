@@ -19,9 +19,6 @@ var safedelete = {
                     window.clearInterval(timer);
                 } ,2000);
         }
-
-
-
-
+        
     }
 };
