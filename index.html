@@ -208,9 +208,20 @@
                     <div class="navbar-header">
                         <button href="#" class="glyphicon glyphicon-plus-sign btn btn-primary" style="float: left" data-toggle="modal" data-target="#add_shopping_item"></button>
                         <a class="navbar-brand" href="#">Shopping List</a>
-                        <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary" style="float: right"></button>
-                    </div>
+                        <div class="dropdown" style="float: right">
+                            <button href="#" class="glyphicon glyphicon-menu-hamburger btn btn-primary dropdown-toggle"
+                                    type="button" id="dropdownMenuShopping" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="float: right">
 
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenuShopping">
+                                <li><a href="#" onclick="
+                                    $('#confirm_popup_text').html('Are you sure you want to delete everything?');
+                                    $('#confirm_popup_accept').attr('onclick', 'shopping.delete_all_items()')"
+                                       data-toggle="modal" data-target="#confirm_popup">Remove All Items</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -338,7 +349,7 @@
                                 <li><a href="#">Sort by Recently Added</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#" onclick="
-                                    $('#confirm_popup_text').html('Are you sure you want to delete EVERYTHING?');
+                                    $('#confirm_popup_text').html('Are you sure you want to delete everything?');
                                     $('#confirm_popup_accept').attr('onclick', 'kitchen.delete_all_items()')"
                                     data-toggle="modal" data-target="#confirm_popup">Remove All Items</a></li>
                             </ul>
