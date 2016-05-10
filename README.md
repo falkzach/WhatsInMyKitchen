@@ -1,3 +1,3 @@
 # Whats In My Kitchen
-
-A prototype of the Whats In My Kitchen application for our Human Computer Interaction (CSCI443) class.
+# CS412 - Game and Mobile - Spring 2016
+# Carlos Albaladejo and Ayechan San
