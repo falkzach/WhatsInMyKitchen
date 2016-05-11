@@ -111,7 +111,26 @@
                 </div>
 
                 <!-- Q&As for Recipes -->
-                <div class="recipeDD box">You have selected Recipes</div>
+                <div class="recipeDD box">
+                    <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+                        <a id="myHeader7" href="javascript:showonlyone('newboxes7');" >How do I add a new recipe?</a>
+                    </div>
+                    <div class="newboxes" id="newboxes7" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Tap on the plus icon in the top left corner of the recipe page.</div>
+
+                    <br>
+
+                    <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+                        <a id="myHeader8" href="javascript:showonlyone('newboxes8');" >How do I view a recipe?</a>
+                    </div>
+                    <div class="newboxes" id="newboxes8" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;">Tap on the recipe name you would like to view. A popup window will appear with more information about the recipe.</div>
+
+                    <br>
+
+                    <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+                        <a id="myHeader9" href="javascript:showonlyone('newboxes9');" >How do i delete all recipes?</a>
+                    </div>
+                    <div class="newboxes" id="newboxes9" style="border: 1px solid black; background-color: #CCCCCC; display: none;padding: 5px;"></div>
+                </div>
 
                 <!-- Q&As for Users -->
                 <div class="userDD box">
@@ -464,11 +483,10 @@
 
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">View Public Recipes</a></li>
-                                <li><a href="#">Sort by Name</a></li>
-                                <li><a href="#">Sort by Recently Added</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#" onclick="recipes.delete_all_recipes()">Remove All Items</a></li>
+                                <li><a href="#" onclick="
+                                    $('#confirm_popup_text').html('Are you sure you want to delete everything?');
+                                    $('#confirm_popup_accept').attr('onclick', 'recipes.delete_all_recipes()')"
+                                       data-toggle="modal" data-target="#confirm_popup">Remove All Items</a></li>
                             </ul>
                         </div>
                     </div>
@@ -518,6 +536,28 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success" onclick="recipes.add_recipe($('#recipe_name').val(), true, $('#recipe_ingredients').val(), $('#recipe_directions').val())" data-dismiss="modal">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="viewRecipe" tabindex="-1" role="dialog" aria-labelledby="viewRecipe">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="viewRecipeTitle"></h4>
+                        </div>
+                        <form>
+                            <div class="modal-body col-lg-6">
+                                <label>Ingredients</label>
+                                <p id = "ingIno"></p>
+                                <br>
+                                <hr>
+                                <br>
+                                <label>Directions</label>
+                                <p id = "dirInfo"></p>
                             </div>
                         </form>
                     </div>
@@ -626,7 +666,7 @@
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">List of units
                         <span class="caret"></span></button>
-                    <ul class="list-group dropdown-menu dropdown-scrollable" id="unitTableSettings">
+                    <ul class="list-group dropdown-menu dropdown-scrollable" id="unitTableSettings" style="width:5px">
                     </ul>
                 </div>
             </div>

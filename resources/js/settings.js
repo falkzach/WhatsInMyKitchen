@@ -65,12 +65,22 @@ var settings = {
     },
 
     add_unit: function(name) {
+        if(name == "")
+        {
+            console.log("ERROR in add cateopry input: " + name);
+            return;
+        }
         var context = {name: name};
         settings.units[context.name] = context;
         settings._add_unit_li(context);
     },
 
     add_kitchen: function(name) {
+        if(name == "")
+        {
+            console.log("ERROR in add cateopry input: " + name);
+            return;
+        }
         var context = {name: name};
         settings.kitchen_accounts[context.name] = context;
         settings._add_kitchen_li(context);
