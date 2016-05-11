@@ -45,6 +45,9 @@ var shopping={
             console.log("ERROR in add item input: " + name + "," + quantity + "," + unit + ";");
             return;
         }
+        $('#notification_popup_text').html('Added ' + $('#shop_item_quantity').val() + ' ' + $('#add_shop_item_unit_list_head').attr('value')
+            + ' of ' + $('#shop_item_name').val() + ' to Shopping List');
+        $('#notification_popup').modal('show');
         var context = {name: name, quantity: quantity, unit: unit};
         shopping.item_list[context.name] = context;
         shopping._add_item_li(context);
@@ -96,6 +99,7 @@ var shopping={
             shopping.delete_item(element);
             shopping.delete_item(element);
         }
+        $('#confirm_popup').modal('hide');
     },
 
     from_list_to_cart: function(element) {

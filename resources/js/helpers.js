@@ -1,6 +1,8 @@
 /**
- * Created by carlos on 3/05/16.
+ * Created by Ayechan
+ * Edited by Carlos on 3/05/16.
  */
+
 function printHtmlById(elementId, content)
 {
     var element = $('#'+elementId);

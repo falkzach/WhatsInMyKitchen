@@ -36,10 +36,7 @@ html, body
     background:#f9f9f9;
     color:#000;
 }
-body
-{
-    font-size:0.8em;
-}
+
 
 /* draggable targets - two lists */
 [data-draggable="target"]

@@ -58,6 +58,9 @@ var kitchen = {
             console.log("ERROR in add item input: " + name + "," + quantity + "," + unit + ";");
             return;
         }
+        $('#kitchen_list_notification_text').html('Added ' + $('#item_quantity').val() + ' ' + $('#add_item_unit_list_head').attr('value')
+            + ' of ' + $('#item_name').val());
+        $('#kitchen_list_notification').modal('show');
         var context = {name: name, quantity: quantity, unit: unit};
         kitchen.items[context.name] = context;
         kitchen._add_item_li(context);
@@ -81,6 +84,9 @@ var kitchen = {
             console.log("ERROR in add cateopry input: " + name + "," + quantity + "," + unit + ";");
             return;
         }
+
+        $('#kitchen_list_notification_text').html('Added ' + $('#add_kitchen_category_name').val() + ' category');
+        $('#kitchen_list_notification').modal('show');
         var context = {name: new_category};
         kitchen.categories[context.name] = context;
         kitchen._add_category_li(context);
@@ -108,6 +114,7 @@ var kitchen = {
             kitchen.delete_item(element);
             kitchen.delete_item(element);
         }
+        $('#confirm_popup').modal('hide');
     },
 
     change_quantity: function(name, newQ) {
